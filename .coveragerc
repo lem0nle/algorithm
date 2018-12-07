@@ -1,0 +1,10 @@
+[run]
+    source=algo
+[report]
+exclude_lines =
+    pragma: no cover
+    pass
+    raise NotImplementedError
+    if __name__ == '__main__':
+    def __str__
+    def __repr__
