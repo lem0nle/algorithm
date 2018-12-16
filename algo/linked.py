@@ -8,6 +8,18 @@ class _BiNode:
         self.obj, self.p, self.n = obj, p, n
 
 
+class _NodeIter:
+    def __init__(self, node):
+        self.node = node
+
+    def __next__(self):
+        if self.node is None:
+            raise StopIteration()
+        obj = self.node.obj
+        self.node = self.node.n
+        return obj
+
+
 class LinkedList:
     def __init__(self):
         self.head = None
@@ -17,7 +29,7 @@ class LinkedList:
         return self.length
 
     def __iter__(self):
-        pass
+        return _NodeIter(self.head)
 
     def insert(self, obj, index=0):
         if index < 0:
@@ -60,21 +72,59 @@ class LinkedList:
         return -1
 
     def reverse(self):
-        pass
+        p = self.head.n
+        self.head.n = None
+        while p is not None:
+            temp = p.n
+            p.n = self.head
+            self.head = p
+            p = temp
 
 
-class LinkedListFakeNode:
+class LinkedListFakeNode(LinkedList):
     def __init__(self):
-        self.head = _Node(None, None)
+        super().__init__()
+        self._head = _Node(None, None)
 
     def insert(self, obj, index=0):
-        node = self.head
+        node = self._head
         for _ in range(index):
             node = node.n
         node.n = _Node(obj, node.n)
 
     def remove(self, index):
-        node = self.head
+        node = self._head
         for _ in range(index):
             node = node.n
         node.n = node.n.n
+
+    @property
+    def head(self):
+        return self._head.n
+
+    @head.setter
+    def head(self, v):
+        pass
+
+    def reverse(self):
+        pnode = None
+        node = self.head
+        while node is not None:
+            temp = node.n
+            node.n = pnode
+            pnode = node
+            node = temp
+        self._head.n = pnode
+
+
+if __name__ == '__main__':
+    ll = LinkedListFakeNode()
+    ll.insert('once')
+    ll.insert('upon')
+    ll.insert('a')
+    ll.insert('time')
+    ll.reverse()
+    ll.remove(2)
+    ll.insert('b', 2)
+    for item in ll:
+        print(item)
