@@ -124,6 +124,7 @@ if __name__ == '__main__':
     ll.insert('a')
     ll.insert('time')
     ll.reverse()
+    print(ll)
     ll.remove(2)
     ll.insert('b', 2)
     for item in ll:
