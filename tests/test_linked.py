@@ -17,10 +17,8 @@ def test_linked_list():
     assert ll.find('a') == -1 and ll.find('b') == 2
 
     l1 = ['once', 'upon', 'b', 'time']
-    i = 0
-    for j in ll:
+    for i, j in enumerate(ll):
         assert j == l1[i]
-        i += 1
 
     ll.remove(0)
     assert len(ll) == 3
@@ -36,10 +34,8 @@ def test_linked_list():
     fn.remove(4)
     fn.insert('lamb', 4)
     l2 = ['Mary', 'had', 'a', 'little', 'lamb', '.']
-    i = 0
-    for j in fn:
+    for i, j in enumerate(fn):
         assert j == l2[i]
-        i += 1
 
     fn.head.obj == 'Jack'
     assert fn.head.obj == 'Mary'
