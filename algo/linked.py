@@ -117,13 +117,13 @@ class LinkedListFakeNode(LinkedList):
         self._head.n = pnode
 
 
-# class BiLinkedList:
-#     def __init__(self):
-#         self.head = None
-#         self.length = 0
+class BiLinkedList:
+    def __init__(self):
+        self.head = None
+        self.length = 0
 
-#     def __len__(self):
-#         return self.length
+    def __len__(self):
+        return self.length
 
 
 if __name__ == '__main__':
