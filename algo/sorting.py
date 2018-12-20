@@ -10,8 +10,20 @@ def heapSort(array, reverse=False):
         heap.pop()
 
 
-def quickSort(array):
-    if len(array) <= 1:
+def quickSort(array, low=0, high=None):
+    if high is None:
+        high = len(array)
+    if high - low <= 1:
         return
-    m = array[0]
-    pass
+    p = low
+    for i in range(low, high - 1):
+        if array[i] < array[high - 1]:
+            temp = array[p]
+            array[p] = array[i]
+            array[i] = temp
+            p += 1
+    temp = array[p]
+    array[p] = array[high - 1]
+    array[high - 1] = temp
+    quickSort(array, low, p)
+    quickSort(array, p + 1, high)
