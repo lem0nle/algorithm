@@ -1,6 +1,7 @@
 from collections import namedtuple
 from graphviz import Digraph
 from .linked import LinkedList
+from .heap import PQ
 
 
 class Graph:
@@ -77,13 +78,29 @@ class FloydAllPairsSP:
         return self._dists[s][t]
 
 
-class DijkstraAllPairsSP:
-    def __init__(self, graph: DenseGraph):
+class DijkstraSP:
+    def __init__(self, graph: Graph, s):
         self.graph = graph
-        self._dists = DijkstraAllPairsSP._dijkstra(graph)
+        self._dists = DijkstraSP._dijkstra(graph, s)
+        self.s = s
 
     @staticmethod
-    def _dijkstra(graph):
-        # size = graph.size
-        # s = {0}
-        pass
+    def _dijkstra(graph, s):
+        d = [float('inf')] * graph.size
+        d[s] = 0
+        pq = PQ()
+        pq.insert(s, 0)
+        while len(pq):
+            ind, item = pq.pop()
+            for t, w in graph.edges[ind]:
+                if d[ind] + w >= d[t]:
+                    continue
+                d[t] = d[ind] + w
+                if t in pq:
+                    pq.edit(t, d[t])
+                else:
+                    pq.insert(t, d[t])
+        return d
+
+    def dist(self, t):
+        return self._dists[t]

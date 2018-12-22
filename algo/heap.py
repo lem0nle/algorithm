@@ -22,6 +22,7 @@ class Heap:
         self.heap[j] = temp
 
     def _swim(self, k):
+        # k is the index in heap.
         heap = self.heap
         cmp = self.cmp
         while k != 0 and cmp(heap[k], heap[(k - 1) // 2]):
@@ -45,26 +46,47 @@ class Heap:
 
     def pop(self):
         self.size -= 1
-        heap = self.heap
-        top = heap[0]
-        heap[0] = heap[self.size]
-        heap[self.size] = top
+        self._swap(0, self.size)
         self._sink(0)
-        return top
+        return self.heap[self.size]
 
 
 class PQ(Heap):
     def __init__(self, cmp=None):
         def new_cmp(a, b):
-            return cmp(a[1], b[1])
+            return a[1] < b[1] if cmp is None else cmp(a[1], b[1])
         super().__init__([], new_cmp)
         self.ind = []
 
-    def insert(self, item, ind):
-        pass
+    def __contains__(self, ind):
+        return len(self.ind) > ind and self.ind[ind] is not None
 
-    def edit(self):
-        pass
+    def _swap(self, i, j):
+        super()._swap(i, j)
+        temp = self.ind[self.heap[i][0]]
+        self.ind[self.heap[i][0]] = self.ind[self.heap[j][0]]
+        self.ind[self.heap[j][0]] = temp
 
-    def pop():
-        pass
+    def insert(self, ind, item):
+        self.heap.append([ind, item])
+
+        if ind >= len(self.ind):
+            t = ind - len(self.ind)
+            self.ind.extend([None] * t)
+            self.ind.append(self.size)
+        else:
+            self.ind[ind] = self.size
+
+        self._swim(self.size)
+        self.size += 1
+
+    def edit(self, ind, item):
+        self.heap[self.ind[ind]][1] = item
+        self._swim(self.ind[ind])
+        self._sink(self.ind[ind])
+
+    def pop(self):
+        super().pop()
+        ind, item = self.heap.pop()
+        self.ind[ind] = None
+        return ind, item
