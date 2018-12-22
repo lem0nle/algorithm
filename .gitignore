@@ -106,3 +106,4 @@ venv.bak/
 # Mac
 .DS_Store
 .zcache/
+notebook/

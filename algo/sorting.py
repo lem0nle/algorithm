@@ -11,6 +11,7 @@ def heapSort(array, reverse=False):
 
 
 def quickSort(array, low=0, high=None):
+    """O(n*log n)"""
     if high is None:
         high = len(array)
     if high - low <= 1:

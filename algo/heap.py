@@ -16,13 +16,16 @@ class Heap:
     def __len__(self):
         return self.size
 
+    def _swap(self, i, j):
+        temp = self.heap[i]
+        self.heap[i] = self.heap[j]
+        self.heap[j] = temp
+
     def _swim(self, k):
         heap = self.heap
         cmp = self.cmp
         while k != 0 and cmp(heap[k], heap[(k - 1) // 2]):
-            temp = heap[k]
-            heap[k] = heap[(k - 1) // 2]
-            heap[(k - 1) // 2] = temp
+            self._swap(k, (k - 1) // 2)
             k = (k - 1) // 2
 
     def _sink(self, k):
@@ -34,9 +37,7 @@ class Heap:
                 j += 1
             if not cmp(heap[j], heap[k]):
                 break
-            temp = heap[k]
-            heap[k] = heap[j]
-            heap[j] = temp
+            self._swap(k, j)
             k = j
 
     def top(self):
@@ -50,3 +51,20 @@ class Heap:
         heap[self.size] = top
         self._sink(0)
         return top
+
+
+class PQ(Heap):
+    def __init__(self, cmp=None):
+        def new_cmp(a, b):
+            return cmp(a[1], b[1])
+        super().__init__([], new_cmp)
+        self.ind = []
+
+    def insert(self, item, ind):
+        pass
+
+    def edit(self):
+        pass
+
+    def pop():
+        pass
