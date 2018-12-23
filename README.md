@@ -4,58 +4,58 @@
 Woof, coding learning!
 
 ## Stack
-### attribute 
+### method
 - push(self, e)
 - pop(self), return lastobj
 - top(self), return firstobj
-### property
+### magic method
 - len
 
 ## LinkedList
-### attribute
+### method
 - insert(self, obj, index=0)
 - remove(self, index)
 - find(self, obj), return index
 - reverse(self)
-### property
+### magic method
 - len
 - iter
 
 ## Heap
-### attribute
+### method
 - top(self), return firstobj
 - pop(self), return lastobj
-### property
+### magic method
 - len
 
 ## PQ(Heap)
-### attribute
+### method
 - insert(self, ind, item)
 - edit(self, ind, item)
 - pop(self), return index and obj
-### property
+### magic method
 - len
 - in
 
 ## Graph
 Represent a graph with adjacency list
-### attribute
+### method
 - add_edge(self, s, t, w=1)
-### property
+### other
 - print with graphviz
 
 ## DenseGraph
 Represent a graph with matrix
-### attribute
+### method
 - add_edge(self, s, t, w=1)
-### property
+### other
 - print with graphviz
 
 ## FloydAllPairsSP
-### attribute
+### method
 - dist(self, s, t)
 
 ## DijkstraSP
 Initiate with a source vertex
-### attribute
+### method
 - dist(self, t)
