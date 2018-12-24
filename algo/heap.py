@@ -59,6 +59,7 @@ class PQ(Heap):
         self.ind = []
 
     def __contains__(self, ind):
+        # customize 'in'
         return len(self.ind) > ind and self.ind[ind] is not None
 
     def _swap(self, i, j):
