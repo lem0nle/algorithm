@@ -55,5 +55,36 @@ def evaluate(expr):
     return vals.top()
 
 
+def shash(s, R=10, Q=997):
+    h = 0
+    for c in s:
+        h = (R * h + ord(c)) % Q
+    return h
+
+
+def find(s, sub):
+    M = len(sub)
+    if M > len(s):
+        return -1
+
+    R, Q = 10, 997
+    delta = 1
+    for i in range(M - 1):
+        delta = delta * R % Q
+
+    h_sub = shash(sub, R, Q)
+    h_s = shash(s[:M], R, Q)
+
+    if h_s == h_sub and s[:M] == sub:
+        return 0
+
+    for i in range(1, len(s) - M + 1):
+        h_s = ((h_s - ord(s[i - 1]) * delta) * R + ord(s[i + M - 1])) % Q
+        if h_s == h_sub and s[i:i + M] == sub:
+            return i
+
+    return -1
+
+
 if __name__ == '__main__':
-    print(evaluate('3(1+3)'))
+    print(find('adedczsf', 'dc'))
