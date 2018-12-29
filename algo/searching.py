@@ -30,6 +30,26 @@ class Set:
         ind = hash(obj) % self.Q
         return obj in self.hash_table[ind]
 
+    def __str__(self):
+        return '{' + ', '.join(repr(c) for c in self) + '}'
+
+        """another way to implement __str__()"""
+        # from io import StringIO
+        # buff = StringIO()
+        # buff.write('{')
+        # for li in self.hash_table:
+        #     for i in li:
+        #         buff.write(repr(i))
+        #         buff.write(', ')
+        # buff.seek(buff.tell() - 2)
+        # buff.write('}')
+        # return buff.getvalue()[:-1]
+
+    def __iter__(self):
+        for li in self.hash_table:
+            for i in li:
+                yield i
+
     def add(self, obj):
         ind = hash(obj) % self.Q
         if obj not in self.hash_table[ind]:
