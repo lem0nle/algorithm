@@ -31,6 +31,12 @@ class LinkedList:
     def __iter__(self):
         return _NodeIter(self.head)
 
+    def __contains__(self, obj):
+        for p in self:
+            if p == obj:
+                return True
+        return False
+
     def insert(self, obj, index=0):
         if index < 0:
             index = self.length + index
