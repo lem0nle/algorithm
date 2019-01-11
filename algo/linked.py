@@ -19,6 +19,9 @@ class _NodeIter:
         self.node = self.node.n
         return obj
 
+    def __iter__(self):
+        return self
+
 
 class LinkedList:
     def __init__(self):
