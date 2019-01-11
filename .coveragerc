@@ -1,5 +1,5 @@
 [run]
-    source=algo
+    source=algo,examples
 [report]
 exclude_lines =
     pragma: no cover

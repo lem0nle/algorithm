@@ -1,4 +1,4 @@
-from algo.misc import hanoi
+from ..recursion import hanoi
 
 
 def test_hanoi():
