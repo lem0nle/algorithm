@@ -50,6 +50,10 @@ class Heap:
         self._sink(0)
         return self.heap[self.size]
 
+    def editroot(self, e):
+        self.heap[0] = e
+        self._sink(0)
+
 
 class PQ(Heap):
     def __init__(self, cmp=None):

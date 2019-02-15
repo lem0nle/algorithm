@@ -15,13 +15,11 @@ def binarySearch(array, item):
     return -1
 
 
-class Set:
-    def __init__(self, it):
+class HashTable:
+    def __init__(self):
         self.Q = 997
         self.hash_table = [LinkedList() for _ in range(self.Q)]
         self.length = 0
-        for obj in it:
-            self.add(obj)
 
     def __len__(self):
         return self.length
@@ -32,7 +30,6 @@ class Set:
 
     def __str__(self):
         return '{' + ', '.join(repr(c) for c in self) + '}'
-
         """another way to implement __str__()"""
         # from io import StringIO
         # buff = StringIO()
@@ -49,6 +46,13 @@ class Set:
         for li in self.hash_table:
             for i in li:
                 yield i
+
+
+class HashSet(HashTable):
+    def __init__(self, it):
+        super().__init__()
+        for obj in it:
+            self.add(obj)
 
     def add(self, obj):
         ind = hash(obj) % self.Q
