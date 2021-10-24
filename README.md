@@ -1,5 +1,5 @@
 # algorithm
-[![Build Status](https://travis-ci.org/doggoesroof/algorithm.svg?branch=master)](https://travis-ci.org/doggoesroof/algorithm) [![Coverage Status](https://coveralls.io/repos/github/doggoesroof/algorithm/badge.svg)](https://coveralls.io/github/doggoesroof/algorithm)
+[![Build Status](https://travis-ci.org/lem0nle/algorithm.svg?branch=master)](https://travis-ci.org/lem0nle/algorithm) [![Coverage Status](https://coveralls.io/repos/github/lem0nle/algorithm/badge.svg)](https://coveralls.io/github/lem0nle/algorithm)
 
 Woof, coding learning!
 
